@@ -20,13 +20,6 @@ body {
 	border-width: 0;
 }
 
-.readme {
-	display: flex;
-  justify-content: center;
-	padding-top: 50px;
-	font-size: 1.4rem;
-}
-
 .clearfix::after {
   content: "";
   display: block;

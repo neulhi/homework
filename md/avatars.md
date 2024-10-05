@@ -24,6 +24,6 @@
 </html>
 ```
 
-- [float, flex layout 구현 바로 가기](./../avatars/avatars.html "float, flex layout 구현")
+- [float, flex layout 구현 바로 가기](https://neulhi.github.io/homework/avatars/avatars.html "float, flex layout 구현")
 
 
