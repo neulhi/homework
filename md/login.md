@@ -20,13 +20,13 @@
 
   > 1.  **웹접근성**을 고려하여 로그인 폼 서식을 마크업 할 것  
   >     (레이블 제공의 경우 WAI-ARIA가 아닌 **HTML 네이티브 방식**으로 구현)
-  > 2.  아이디와 비밀번호는 **필수 입력 서식**임을 알 수 있도록 구현할 것
-  > 3.  로그인 상태 유지와 IP 보안 ON/OFF UI는 **마우스 이외에 키보드로도 조작 가능**하도록 구현할 것
+  > 1.  아이디와 비밀번호는 **필수 입력 서식**임을 알 수 있도록 구현할 것
+  > 1.  로그인 상태 유지와 IP 보안 ON/OFF UI는 **마우스 이외에 키보드로도 조작 가능**하도록 구현할 것
 
 - `스타일링`
   > 1. 미디어 쿼리를 사용하여 **반응형**으로 구현할 것  
   >    (768px 미만 모바일 / 768px 이상 데스크탑)
-  > 2. **모바일 퍼스트**로 스타일링 할 것  
+  > 1. **모바일 퍼스트**로 스타일링 할 것  
   >    (공통 스타일과 모바일 스타일을 먼저 구현한 후 데스크탑 스타일을 재정의)
 
 <br />
@@ -45,12 +45,10 @@
 <br>
 
 ### `heading 로고` 부분은 `h1` 안에
--------------
 
->    `<svg>`요소에 속성을 추가하여 사용했다.
->     1. `role="img"`
->     2. `aria-labelledby="logo"`
->     3. `<title id="logo">네이버</title>`
+---
+
+> `<svg>`요소에 속성을 추가하여 사용했다. 1. `role="img"` 2. `aria-labelledby="logo"` 3. `<title id="logo">네이버</title>`
 
 ```html
 <h1 class="brand">
@@ -62,14 +60,16 @@
   </a>
 </h1>
 ```
+
 <br>
 
 ## `form`
 
->     3개의 컴포넌트로 보았다.
->     1. 아이디, 비밀번호 입력 칸
->     1. 로그인 버튼
->     1. 체크 박스 요소
+> 3개의 컴포넌트로 보았다.
+>
+> 1.  아이디, 비밀번호 입력 칸
+> 1.  로그인 버튼
+> 1.  체크 박스 요소
 
 <br>
 
@@ -111,10 +111,12 @@ input:invalid:not(:placeholder-shown) + .error-message {
 **2. 로그인 버튼**
 
 > `type="submit"` 사용  
->	css에서 버튼에 `all: unset;` 적용하니 키보드로 이동했을 때 테두리까지 보이지 않아서  
+>  css에서 버튼에 `all: unset;` 적용하니 키보드로 이동했을 때 테두리까지 보이지 않아서  
 > `&:focus {
+
     border: 2px solid var(--color-black);
-  }` 테두리를 추가 했다.
+
+}` 테두리를 추가 했다.
 
 ```html
 <button type="submit" class="button-login">로그인</button>
@@ -143,12 +145,11 @@ input:invalid:not(:placeholder-shown) + .error-message {
 
 > 배치를 위해 `<div class="keep-wrapper">`로 체크 박스 요소 전체를 한번 감싸고  
 > `<div class="keep-check">`로그인 상태유지  
->	`<div class="ip-input">`IP 보안 각각 배치를 위해 사용했다.  
+> `<div class="ip-input">`IP 보안 각각 배치를 위해 사용했다.
+> css에서 체크박스 기본 브라우저 스타일링을  
+> `[type="checkbox"] {appearance: none;}`로 없애고  
+> `:checked` , `::after` , `::before`를 사용해 스타일링 했다.
 
->	css에서 체크박스 기본 브라우저 스타일링을 `[type="checkbox"] {
-      appearance: none; 
-	}`로 없애고   
->	`:checked` , `::after` , `::before`를 사용해 스타일링 했다.
 ```html
 <div class="keep-wrapper">
   <div class="keep-check">
@@ -187,7 +188,7 @@ input:invalid:not(:placeholder-shown) + .error-message {
       inline-size: 24px;
       block-size: 24px;
       margin-inline-end: 0.3125rem;
-			background-image: url(../../assets/login/unchecked.svg);
+      background-image: url(../../assets/login/unchecked.svg);
     }
 
     [type="checkbox"]:checked {
@@ -248,7 +249,7 @@ input:invalid:not(:placeholder-shown) + .error-message {
         background: var(--color-gray);
         border-radius: 60px;
         transition: background 0.4s;
-				cursor: pointer;
+        cursor: pointer;
       }
 
       label::after {
@@ -304,7 +305,7 @@ input:invalid:not(:placeholder-shown) + .error-message {
 
 1. 모바일 퍼스트의 장점은 모바일에서 먼저 스타일을 정의하기 때문에 작은 기기에서는 불필요한 스타일을 로드하지 않아 성능이 향상된다는 것을 새로 알게 되었다.
 
-1. IP보안 온오프 UI가 사용자가 클릭해 보지 않으면 알기 힘들어서 현재 네이버는 토글 형태로 바꾼 것 같아 검색해서 비슷하게 구현했지만 네이버처럼 키보드로 이동하였을 때 작동은 하지만 테두리가 보이지 않았다. 이유는 검색을 해도 찾지 못했다.🤔
+1. IP보안 온오프 UI가 사용자가 클릭해 보지 않으면 알기 힘들어서 현재 네이버는 토글 형태로 바꾼 것 같아 검색해서 비슷하게 구현했지만 네이버처럼 키보드로 이동했을 때 작동은 하지만 테두리가 보이지 않았다. 이유는 검색을 해도 찾지 못했다.🤔
 
 1. css를 잘 쓰면 반응형을 구현할 때 @media를 많이 쓰지 않아도 될 것 같다.
 
