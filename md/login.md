@@ -48,7 +48,10 @@
 
 ---
 
-> `<svg>`요소에 속성을 추가하여 사용했다. 1. `role="img"` 2. `aria-labelledby="logo"` 3. `<title id="logo">네이버</title>`
+> `<svg>`요소에 속성을 추가하여 사용했다.  
+>  1. `role="img"`  
+>  1. `aria-labelledby="logo"`  
+>  1. `<title id="logo">네이버</title>`
 
 ```html
 <h1 class="brand">
