@@ -1,0 +1,249 @@
+body,
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  --text-color-basic: #121212;
+  --font-size-basic: 1rem;
+  --color-blue: #24388d;
+  --input-bg-color: #e9f0fd;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-green: #03cf5d;
+  --color-gray: #dadada;
+  --color-dark-gray: #999999;
+
+  color: var(--text-color-basic);
+  font-size: var(--font-size-basic);
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.login-wrapper {
+  --wrapper-size: 500px;
+
+  max-inline-size: var(--wrapper-size);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  transform: translateY(30vh);
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.brand {
+  max-inline-size: 230px;
+  margin: 0 auto;
+
+  svg {
+    max-width: 100%;
+  }
+}
+
+/* 로그인 폼 */
+.login-form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.625rem;
+  margin-block-start: 3.125rem;
+
+  input:not(.keep-wrapper input) {
+    font-size: 0.875rem;
+    block-size: 45px;
+    border: 1px solid var(--color-gray);
+    background-color: var(--color-white);
+    padding-inline-start: 0.5rem;
+  }
+
+  input:focus:not(#keep-input, #ip-input) {
+    outline-color: var(--color-blue);
+    background-color: var(--input-bg-color);
+  }
+}
+
+/* 에러 메시지 스타일 */
+.error-message {
+  display: none;
+  color: red;
+  font-size: 0.9em;
+}
+
+/* 입력 값이 유효하지 않고, 값이 입력된 상태일 때만 에러 메시지 표시 */
+input:invalid:not(:placeholder-shown) + .error-message {
+  display: inline;
+}
+
+/* 로그인 버튼 */
+.button-login {
+  all: unset;
+  font-size: var(--font-size-basic);
+  text-align: center;
+  block-size: 45px;
+  color: var(--color-white);
+  background-color: var(--color-green);
+  margin-block-start: 1.25rem;
+  cursor: pointer;
+
+  &:focus {
+    border: 2px solid var(--color-black);
+  }
+}
+
+/* 체크 박스 요소 */
+.keep-wrapper {
+  input {
+    margin: 0;
+  }
+
+  .keep-check {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    #keep-input,
+    .keep-text {
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    [type="checkbox"] {
+      appearance: none;
+      inline-size: 24px;
+      block-size: 24px;
+      margin-inline-end: 0.3125rem;
+			background-image: url(../../assets/login/unchecked.svg);
+    }
+
+    [type="checkbox"]:checked {
+      background-image: url(../../assets/login/checked.svg);
+    }
+  }
+
+  .ip-input {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    & {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .keep-check {
+      display: unset;
+    }
+
+    .ip-input {
+      display: flex;
+      align-items: center;
+
+			a {
+				padding-inline-end: .5rem;
+			}
+
+      [type="checkbox"] {
+        appearance: none;
+      }
+
+      /* 과제 IP보안 UI(텍스트) 직접 - 구현 */
+      /* [type="checkbox"]::before {
+        content: "OFF";
+				font-weight: 700;
+				color: var(--color-dark-gray);
+      }
+
+      [type="checkbox"]:checked::after {
+        content: "ON";
+        color: var(--color-green);
+				font-weight: 700;
+      }
+
+			[type="checkbox"]:checked::before {
+				content: none;
+			} */
+
+      /* 현재 네이버 IP보안 UI(토글) - 검색해서 단위만 수정하여 구현 */
+      label {
+        display: block;
+        position: relative;
+        inline-size: 48px;
+        block-size: 20px;
+        background: var(--color-gray);
+        border-radius: 60px;
+        transition: background 0.4s;
+				cursor: pointer;
+      }
+
+      label::after {
+        content: "";
+        position: absolute;
+        inset-inline-start: 4px;
+        inset-block-start: 50%;
+        inline-size: 14px;
+        block-size: 14px;
+        border-radius: 100%;
+        background-color: var(--color-white);
+        transform: translateY(-50%);
+        box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s;
+      }
+
+      label::before {
+        content: "OFF";
+        font-size: 11px;
+        font-weight: bold;
+        position: absolute;
+        inset-inline-start: 20px;
+        inset-block-start: 50%;
+        transform: translateY(-50%);
+        transition: all 0.4s;
+      }
+
+      #ip-input:checked + label {
+        background: var(--color-green);
+      }
+
+      #ip-input:checked + label::after {
+        inset-inline-start: 30px;
+      }
+
+      #ip-input:checked + label::before {
+        content: "ON";
+        color: var(--color-white);
+        inset-inline-start: 8px;
+      }
+
+			#ip-input:checked + label:focus {
+				border: 2px solid var(--color-black);
+			}
+    }
+  }
+}
