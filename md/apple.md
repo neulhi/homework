@@ -4,7 +4,7 @@
 
 1. [코드 설명](#코드-설명)
 1. [회고](#회고)
-1. [Apple layout(grid) 반응형 구현 배포 링크](https://neulhi.github.io/homework/login/apple.html "Apple layout(grid) 반응형 구현")
+1. [Apple layout(grid) 반응형 구현 배포 링크](https://neulhi.github.io/homework/apple/apple.html "Apple layout(grid) 반응형 구현")
 
 <br />
 
